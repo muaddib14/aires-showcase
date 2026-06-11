@@ -92,6 +92,21 @@ export default function Nav() {
         >
           How it works
         </Link>
+        <Link
+          href="/docs"
+          style={{
+            fontSize: "14px",
+            fontWeight: 500,
+            color: "#4A6558",
+            textDecoration: "none",
+            padding: "7px 14px",
+            borderRadius: "8px",
+            transition: "all 0.15s",
+          }}
+          className="nav-link-hover"
+        >
+          Docs
+        </Link>
         <a
           href="https://github.com/Demerzels-lab/Aires-Research-Agent"
           target="_blank"

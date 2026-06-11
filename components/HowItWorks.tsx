@@ -1,6 +1,7 @@
 "use client";
 
 import { Fragment, useState } from "react";
+import Link from "next/link";
 
 /*
  * Three-step flow with hand-drawn-feel SVG icons, dashed connectors
@@ -298,6 +299,40 @@ export default function HowItWorks() {
             )}
           </Fragment>
         ))}
+      </div>
+
+      {/* Link to full docs */}
+      <div style={{ marginTop: "24px", textAlign: "center" }}>
+        <Link
+          href="/docs"
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: "7px",
+            fontFamily: "var(--font-mono, 'DM Mono'), monospace",
+            fontSize: "13px",
+            fontWeight: 500,
+            color: "#007A52",
+            textDecoration: "none",
+            padding: "9px 18px",
+            borderRadius: "9px",
+            border: "1.5px dashed #A8C8B8",
+            transition: "all 0.15s",
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.borderStyle = "solid";
+            e.currentTarget.style.background = "#E0F7EE";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.borderStyle = "dashed";
+            e.currentTarget.style.background = "transparent";
+          }}
+        >
+          Read the full guide
+          <svg width="13" height="13" fill="none" viewBox="0 0 16 16">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </Link>
       </div>
     </section>
   );
