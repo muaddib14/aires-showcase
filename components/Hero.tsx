@@ -21,9 +21,7 @@ const stagger = {
   },
 };
 
-export default function Hero({ stars }: Props) {
-  const starsDisplay = stars > 0 ? (stars >= 1000 ? `${(stars / 1000).toFixed(1)}k` : String(stars)) : "—";
-
+export default function Hero(_props: Props) {
   return (
     <section
       style={{
@@ -141,7 +139,7 @@ export default function Hero({ stars }: Props) {
             }}
             className="btn-pink-hover"
           >
-            Browse skills →
+            Browse skills
             <svg width="14" height="14" fill="none" viewBox="0 0 16 16">
               <path
                 d="M3 8h10M9 4l4 4-4 4"
@@ -172,7 +170,7 @@ export default function Hero({ stars }: Props) {
             }}
             className="btn-outline-hover"
           >
-            GitHub →
+            GitHub
             <svg width="14" height="14" fill="none" viewBox="0 0 16 16">
               <path
                 d="M3 8h10M9 4l4 4-4 4"
@@ -252,7 +250,7 @@ export default function Hero({ stars }: Props) {
                 lineHeight: 1,
               }}
             >
-              {starsDisplay}
+              4
             </div>
             <div
               style={{
@@ -265,7 +263,7 @@ export default function Hero({ stars }: Props) {
                 marginTop: "3px",
               }}
             >
-              Stars
+              Agents Supported
             </div>
           </div>
           <div>
