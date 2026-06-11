@@ -3,11 +3,6 @@ import { motion } from "framer-motion";
 import { TOTAL_SKILLS, TOTAL_CATEGORIES } from "@/lib/categories";
 import { HeroVisual } from "@/components/HeroVisual";
 
-interface Props {
-  stars: number;
-  forks: number;
-}
-
 const fadeUp = {
   hidden: { opacity: 0, y: 12 },
   visible: { opacity: 1, y: 0 },
@@ -21,7 +16,7 @@ const stagger = {
   },
 };
 
-export default function Hero(_props: Props) {
+export default function Hero() {
   return (
     <section
       style={{
@@ -92,9 +87,10 @@ export default function Hero(_props: Props) {
               fontFamily: "'Cormorant Garamond', serif",
               fontWeight: 700,
               letterSpacing: 0,
+              whiteSpace: "nowrap",
             }}
           >
-            skill layer
+            skill&nbsp;layer
           </em>
         </motion.h1>
 
@@ -277,7 +273,7 @@ export default function Hero(_props: Props) {
                 lineHeight: 1,
               }}
             >
-              MIT
+              1
             </div>
             <div
               style={{
@@ -290,7 +286,7 @@ export default function Hero(_props: Props) {
                 marginTop: "3px",
               }}
             >
-              License
+              Command Install
             </div>
           </div>
         </motion.div>

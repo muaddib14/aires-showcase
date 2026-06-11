@@ -7,28 +7,10 @@ import CTABanner from "@/components/CTABanner";
 import Footer from "@/components/Footer";
 import { SectionReveal } from "@/components/SectionReveal";
 
-async function getGitHubStats() {
-  try {
-    const res = await fetch(
-      "https://api.github.com/repos/Orchestra-Research/AI-Research-SKILLs",
-      { next: { revalidate: 3600 } }
-    );
-    const data = await res.json();
-    return {
-      stars: data.stargazers_count as number,
-      forks: data.forks_count as number,
-    };
-  } catch {
-    return { stars: 0, forks: 0 };
-  }
-}
-
-export default async function HomePage() {
-  const { stars, forks } = await getGitHubStats();
-
+export default function HomePage() {
   return (
     <main className="min-h-screen">
-      <Hero stars={stars} forks={forks} />
+      <Hero />
       <MarqueeBar />
       <div className="h-px bg-border max-w-[1024px] mx-auto" />
       <SectionReveal><SkillGrid /></SectionReveal>
