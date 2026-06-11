@@ -1,18 +1,38 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, IBM_Plex_Mono } from "next/font/google";
+import {
+  Bricolage_Grotesque,
+  Cormorant_Garamond,
+  Plus_Jakarta_Sans,
+  DM_Mono,
+} from "next/font/google";
 import Nav from "@/components/Nav";
 import "./globals.css";
 
-const spaceGrotesk = Space_Grotesk({
+const bricolage = Bricolage_Grotesque({
   subsets: ["latin"],
-  variable: "--font-space-grotesk",
+  variable: "--font-display",
   display: "swap",
 });
 
-const ibmPlexMono = IBM_Plex_Mono({
+const cormorant = Cormorant_Garamond({
+  subsets: ["latin"],
+  weight: ["600", "700"],
+  style: ["italic"],
+  variable: "--font-serif",
+  display: "swap",
+});
+
+const jakarta = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-sans",
+  display: "swap",
+});
+
+const dmMono = DM_Mono({
   subsets: ["latin"],
   weight: ["400", "500"],
-  variable: "--font-ibm-plex-mono",
+  variable: "--font-mono",
   display: "swap",
 });
 
@@ -36,11 +56,11 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${spaceGrotesk.variable} ${ibmPlexMono.variable}`}
+      className={`${bricolage.variable} ${cormorant.variable} ${jakarta.variable} ${dmMono.variable}`}
     >
       <body className="bg-bg text-text antialiased font-sans">
         <Nav />
-        <div className="pt-16">{children}</div>
+        {children}
       </body>
     </html>
   );

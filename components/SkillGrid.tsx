@@ -1,14 +1,16 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
 import { SKILLS } from "@/lib/skills";
+import { CATEGORIES } from "@/lib/categories";
 import CategoryRail from "./CategoryRail";
-import SkillCard from "./SkillCard";
 
 export default function SkillGrid() {
+  const [activeCodes, setActiveCodes] = useState<string[] | null>(null);
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const [query, setQuery] = useState("");
+  const [showAll, setShowAll] = useState(false);
 
   const counts = useMemo(() => {
     const map: Record<string, number> = {};
@@ -20,8 +22,8 @@ export default function SkillGrid() {
 
   const filtered = useMemo(() => {
     let list = SKILLS;
-    if (activeCategory)
-      list = list.filter((s) => s.categoryCode === activeCategory);
+    if (activeCodes && activeCodes.length > 0)
+      list = list.filter((s) => activeCodes.includes(s.categoryCode));
     if (query.trim()) {
       const q = query.toLowerCase();
       list = list.filter(
@@ -33,105 +35,327 @@ export default function SkillGrid() {
       );
     }
     return list;
-  }, [activeCategory, query]);
+  }, [activeCodes, query]);
+
+  const displayed = showAll ? filtered : filtered.slice(0, 6);
 
   return (
-    <section id="catalog" className="px-6 pb-24">
-      <div className="mx-auto max-w-7xl">
-        {/* Header */}
-        <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-          <div>
-            <h2 className="text-2xl font-bold">Skill Catalog</h2>
-            <p className="mt-1 text-sm text-muted">
-              <span className="font-mono text-accent-green">
-                {filtered.length}
-              </span>{" "}
-              of {SKILLS.length} skills
-            </p>
+    <section
+      id="catalog"
+      style={{ maxWidth: "1120px", margin: "0 auto", padding: "56px 48px" }}
+    >
+      {/* Header */}
+      <div
+        style={{
+          fontFamily: "var(--font-mono, 'DM Mono'), monospace",
+          fontSize: "10px",
+          fontWeight: 500,
+          color: "#7A9B8A",
+          textTransform: "uppercase",
+          letterSpacing: "0.12em",
+          marginBottom: "6px",
+        }}
+      >
+        Skill Catalog
+      </div>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "flex-end",
+          justifyContent: "space-between",
+          marginBottom: "24px",
+        }}
+      >
+        <div>
+          <div
+            style={{
+              fontFamily: "var(--font-display, 'Bricolage Grotesque'), sans-serif",
+              fontSize: "28px",
+              fontWeight: 800,
+              letterSpacing: "-0.5px",
+              color: "#0D1F18",
+              marginBottom: "4px",
+            }}
+          >
+            Browse all skills
           </div>
-
-          <div className="relative">
-            <input
-              type="text"
-              placeholder="Search skills..."
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              className="w-full rounded-lg border border-border bg-surface px-4 py-2.5 pl-10 font-mono text-sm text-text placeholder-muted outline-none transition-all focus:border-accent-green/40 focus:ring-1 focus:ring-accent-green/20 md:w-64"
-            />
-            <svg
-              className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-              />
-            </svg>
+          <div style={{ fontSize: "14px", color: "#4A6558" }}>
+            Filter by category or search by name
           </div>
         </div>
-
-        {/* Category rail */}
-        <div className="mb-8">
-          <CategoryRail
-            active={activeCategory}
-            onChange={setActiveCategory}
-            counts={counts}
+        {/* Search */}
+        <div style={{ position: "relative" }}>
+          <svg
+            style={{
+              position: "absolute",
+              left: "11px",
+              top: "50%",
+              transform: "translateY(-50%)",
+              color: "#7A9B8A",
+            }}
+            width="14"
+            height="14"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+            />
+          </svg>
+          <input
+            type="text"
+            placeholder="Search skills..."
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            style={{
+              width: "210px",
+              padding: "8px 12px 8px 32px",
+              border: "1.5px solid #C8DDD4",
+              borderRadius: "9px",
+              fontSize: "13px",
+              fontFamily: "var(--font-sans, 'Plus Jakarta Sans'), sans-serif",
+              background: "#FFFFFF",
+              color: "#0D1F18",
+              outline: "none",
+              transition: "border-color 0.15s",
+            }}
+            onFocus={(e) => (e.currentTarget.style.borderColor = "#FF3D8A")}
+            onBlur={(e) => (e.currentTarget.style.borderColor = "#C8DDD4")}
           />
         </div>
+      </div>
 
-        {/* Grid */}
-        <AnimatePresence mode="wait">
-          {filtered.length > 0 ? (
-            <motion.div
-              key={`${activeCategory}-${query}`}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
-              className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+      {/* Category Rail */}
+      <CategoryRail
+        active={activeCategory}
+        onChange={(codes, activeCode) => {
+          setActiveCodes(codes);
+          setActiveCategory(activeCode);
+          setShowAll(false);
+        }}
+        counts={counts}
+      />
+
+      {/* Grid */}
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(2, 1fr)",
+          gap: "12px",
+        }}
+      >
+        {displayed.map((skill) => {
+          const category = CATEGORIES.find((c) => c.code === skill.categoryCode);
+          return (
+            <Link
+              key={skill.slug}
+              href={`/skill/${skill.slug}`}
+              className="skill-card-link"
+              style={{
+                background: "#FFFFFF",
+                border: "1.5px solid #C8DDD4",
+                borderRadius: "12px",
+                padding: "24px",
+                textDecoration: "none",
+                color: "inherit",
+                cursor: "pointer",
+                display: "flex",
+                flexDirection: "column",
+                position: "relative",
+                overflow: "hidden",
+                transition: "all 0.18s cubic-bezier(0.4,0,0.2,1)",
+              }}
+              onMouseEnter={(e) => {
+                const el = e.currentTarget as HTMLAnchorElement;
+                el.style.transform = "translateY(-3px)";
+                el.style.boxShadow = "0 12px 32px rgba(0,0,0,0.08)";
+                el.style.borderColor = "#A8C8B8";
+                const bar = el.querySelector(".skill-card-bar") as HTMLElement;
+                if (bar) bar.style.transform = "scaleX(1)";
+              }}
+              onMouseLeave={(e) => {
+                const el = e.currentTarget as HTMLAnchorElement;
+                el.style.transform = "translateY(0)";
+                el.style.boxShadow = "none";
+                el.style.borderColor = "#C8DDD4";
+                const bar = el.querySelector(".skill-card-bar") as HTMLElement;
+                if (bar) bar.style.transform = "scaleX(0)";
+              }}
             >
-              {filtered.map((skill, i) => (
-                <motion.div
-                  key={skill.slug}
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{
-                    duration: 0.25,
-                    delay: Math.min(i * 0.02, 0.3),
+              {/* Bottom gradient bar */}
+              <span
+                className="skill-card-bar"
+                style={{
+                  position: "absolute",
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  height: "2px",
+                  background: "linear-gradient(90deg, #FF3D8A, #00B87A)",
+                  transform: "scaleX(0)",
+                  transformOrigin: "left",
+                  transition: "transform 0.25s ease",
+                  display: "block",
+                }}
+              />
+
+              {/* Meta */}
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "8px",
+                  marginBottom: "10px",
+                }}
+              >
+                <span
+                  style={{
+                    fontFamily: "var(--font-mono, 'DM Mono'), monospace",
+                    fontSize: "10px",
+                    color: "#7A9B8A",
                   }}
                 >
-                  <SkillCard skill={skill} />
-                </motion.div>
-              ))}
-            </motion.div>
-          ) : (
-            <motion.div
-              key="empty"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="py-24 text-center"
-            >
-              <div className="font-mono text-4xl text-border">[ ]</div>
-              <p className="mt-4 text-muted">
-                No skills match &ldquo;{query}&rdquo;
-              </p>
-              <button
-                onClick={() => {
-                  setQuery("");
-                  setActiveCategory(null);
+                  {skill.categoryCode}
+                </span>
+                <span
+                  style={{
+                    fontFamily: "var(--font-mono, 'DM Mono'), monospace",
+                    fontSize: "10px",
+                    fontWeight: 500,
+                    color: "#007A52",
+                    background: "#E0F7EE",
+                    borderRadius: "100px",
+                    padding: "2px 8px",
+                  }}
+                >
+                  {category?.label ?? skill.categorySlug}
+                </span>
+              </div>
+
+              {/* Title */}
+              <h3
+                style={{
+                  fontFamily: "var(--font-display, 'Bricolage Grotesque'), sans-serif",
+                  fontSize: "20px",
+                  fontWeight: 700,
+                  color: "#0D1F18",
+                  letterSpacing: "-0.4px",
+                  marginBottom: "6px",
                 }}
-                className="mt-4 font-mono text-sm text-accent-green hover:underline"
               >
-                Clear filters
-              </button>
-            </motion.div>
-          )}
-        </AnimatePresence>
+                {skill.name}
+              </h3>
+
+              {/* Description */}
+              <p
+                style={{
+                  fontSize: "13px",
+                  color: "#4A6558",
+                  lineHeight: 1.6,
+                  flex: 1,
+                }}
+              >
+                {skill.description}
+              </p>
+
+              {/* Footer */}
+              <div
+                style={{
+                  marginTop: "16px",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "5px",
+                  fontFamily: "var(--font-mono, 'DM Mono'), monospace",
+                  fontSize: "12px",
+                  color: "#FF3D8A",
+                  fontWeight: 500,
+                }}
+              >
+                <svg width="13" height="13" fill="none" viewBox="0 0 16 16">
+                  <path
+                    d="M2 14L14 2M14 2H6M14 2V10"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+                View skill.md{" "}
+                <svg width="12" height="12" fill="none" viewBox="0 0 16 16">
+                  <path
+                    d="M3 8h10M9 4l4 4-4 4"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </div>
+            </Link>
+          );
+        })}
       </div>
+
+      {/* Show all button */}
+      {!showAll && filtered.length > 6 && (
+        <div style={{ textAlign: "center", marginTop: "28px" }}>
+          <button
+            onClick={() => setShowAll(true)}
+            style={{
+              fontFamily: "var(--font-sans, 'Plus Jakarta Sans'), sans-serif",
+              fontSize: "13px",
+              fontWeight: 600,
+              color: "#4A6558",
+              background: "#FFFFFF",
+              border: "1.5px solid #C8DDD4",
+              borderRadius: "9px",
+              padding: "9px 24px",
+              cursor: "pointer",
+            }}
+          >
+            Show all {filtered.length} skills
+          </button>
+        </div>
+      )}
+
+      {filtered.length === 0 && (
+        <div style={{ textAlign: "center", padding: "64px 0" }}>
+          <div
+            style={{
+              fontFamily: "var(--font-mono, 'DM Mono'), monospace",
+              fontSize: "36px",
+              color: "#C8DDD4",
+            }}
+          >
+            [ ]
+          </div>
+          <p style={{ marginTop: "16px", color: "#4A6558" }}>
+            No skills match &ldquo;{query}&rdquo;
+          </p>
+          <button
+            onClick={() => {
+              setQuery("");
+              setActiveCodes(null);
+              setActiveCategory(null);
+            }}
+            style={{
+              marginTop: "16px",
+              fontFamily: "var(--font-mono, 'DM Mono'), monospace",
+              fontSize: "13px",
+              color: "#FF3D8A",
+              background: "none",
+              border: "none",
+              cursor: "pointer",
+              textDecoration: "underline",
+            }}
+          >
+            Clear filters
+          </button>
+        </div>
+      )}
     </section>
   );
 }

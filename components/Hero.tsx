@@ -1,82 +1,303 @@
 "use client";
-
 import { motion } from "framer-motion";
 import { TOTAL_SKILLS, TOTAL_CATEGORIES } from "@/lib/categories";
+import { HeroVisual } from "@/components/HeroVisual";
 
-export default function Hero() {
+interface Props {
+  stars: number;
+  forks: number;
+}
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 12 },
+  visible: { opacity: 1, y: 0 },
+};
+
+const stagger = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.12, delayChildren: 0.1 },
+  },
+};
+
+export default function Hero({ stars }: Props) {
+  const starsDisplay = stars > 0 ? (stars >= 1000 ? `${(stars / 1000).toFixed(1)}k` : String(stars)) : "—";
+
   return (
-    <section className="relative overflow-hidden px-6 pt-24 pb-20 text-center">
-      {/* Dual glow background */}
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute left-1/3 top-1/3 h-[500px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent-green/6 blur-[140px]" />
-        <div className="absolute right-1/4 top-1/2 h-[350px] w-[500px] rounded-full bg-accent-pink/6 blur-[120px]" />
-      </div>
-
-      <motion.div
-        initial={{ opacity: 0, y: 24 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.65 }}
-        className="relative mx-auto max-w-5xl"
-      >
-        {/* Badge */}
-        <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-accent-green/25 bg-accent-green/10 px-4 py-1.5">
-          <span className="h-2 w-2 animate-pulse rounded-full bg-accent-green" />
-          <span className="font-mono text-xs text-accent-green">
-            Orchestra Research · Open Source · MIT License
-          </span>
-        </div>
+    <section
+      style={{
+        position: "relative",
+        minHeight: "calc(100vh - 60px)",
+        display: "flex",
+        alignItems: "center",
+        overflow: "hidden",
+      }}
+    >
+      <HeroVisual />
+      <div style={{
+        position: "relative",
+        zIndex: 1,
+        maxWidth: "1120px",
+        margin: "0 auto",
+        padding: "72px 48px 60px",
+        width: "100%",
+      }}>
+      <motion.div initial="hidden" animate="visible" variants={stagger}>
+        {/* Kicker */}
+        <motion.div variants={fadeUp}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "8px",
+            marginBottom: "22px",
+            fontFamily: "var(--font-mono, 'DM Mono'), monospace",
+            fontSize: "11px",
+            fontWeight: 500,
+            color: "#4A6558",
+            letterSpacing: "0.08em",
+            textTransform: "uppercase",
+          }}
+        >
+          <span
+            style={{
+              width: "5px",
+              height: "5px",
+              background: "#FF3D8A",
+              borderRadius: "50%",
+              display: "inline-block",
+            }}
+          />
+          Orchestra Research · Open Source · MIT
+        </motion.div>
 
         {/* Headline */}
-        <h1 className="text-5xl font-bold leading-tight tracking-tight md:text-7xl">
-          The AI research
-          <br />
-          <span className="bg-gradient-to-r from-accent-green via-accent-green to-accent-pink bg-clip-text text-transparent">
+        <motion.h1 variants={fadeUp}
+          style={{
+            fontFamily: "var(--font-display, 'Bricolage Grotesque'), sans-serif",
+            fontSize: "clamp(40px, 5.5vw, 64px)",
+            fontWeight: 800,
+            lineHeight: 1.02,
+            letterSpacing: "-1.5px",
+            color: "#0D1F18",
+            marginBottom: "20px",
+            maxWidth: "720px",
+            wordBreak: "break-word",
+            overflowWrap: "break-word",
+          }}
+        >
+          The AI research{" "}
+          <em
+            style={{
+              fontStyle: "italic",
+              color: "#FF3D8A",
+              fontFamily: "'Cormorant Garamond', serif",
+              fontWeight: 700,
+              letterSpacing: 0,
+            }}
+          >
             skill layer
-          </span>
-        </h1>
+          </em>
+        </motion.h1>
 
-        {/* Subhead */}
-        <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-muted md:text-xl">
+        {/* Subtitle */}
+        <motion.p variants={fadeUp}
+          style={{
+            fontSize: "17px",
+            color: "#4A6558",
+            maxWidth: "480px",
+            lineHeight: 1.65,
+            marginBottom: "36px",
+          }}
+        >
           {TOTAL_SKILLS} production-ready skills across {TOTAL_CATEGORIES}{" "}
-          categories. From model architecture to paper writing — full research
-          lifecycle for any AI agent.
-        </p>
-
-        {/* Stats */}
-        <div className="mt-10 flex flex-wrap justify-center gap-10">
-          {[
-            { value: String(TOTAL_SKILLS), label: "Production-ready skills" },
-            { value: String(TOTAL_CATEGORIES), label: "Research categories" },
-            { value: "9.4k+", label: "GitHub stars" },
-            { value: "0", label: "Lines of code to install" },
-          ].map(({ value, label }) => (
-            <div key={label} className="text-center">
-              <div className="font-mono text-3xl font-bold text-accent-green">
-                {value}
-              </div>
-              <div className="mt-1 text-sm text-muted">{label}</div>
-            </div>
-          ))}
-        </div>
+          categories — from model architecture to paper writing, for any AI agent.
+        </motion.p>
 
         {/* CTAs */}
-        <div className="mt-10 flex flex-wrap justify-center gap-4">
+        <motion.div variants={fadeUp}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "10px",
+            marginBottom: "52px",
+          }}
+        >
           <a
             href="#catalog"
-            className="rounded-lg bg-accent-green px-7 py-3.5 font-semibold text-bg transition-all hover:bg-accent-green/90 hover:shadow-[0_0_28px_rgba(53,214,164,0.4)]"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "7px",
+              background: "#FF3D8A",
+              color: "white",
+              fontSize: "14px",
+              fontWeight: 600,
+              padding: "11px 22px",
+              borderRadius: "10px",
+              border: "none",
+              textDecoration: "none",
+              transition: "all 0.15s",
+            }}
+            className="btn-pink-hover"
           >
-            Browse Skills
+            Browse skills →
+            <svg width="14" height="14" fill="none" viewBox="0 0 16 16">
+              <path
+                d="M3 8h10M9 4l4 4-4 4"
+                stroke="currentColor"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
           </a>
           <a
             href="https://github.com/Orchestra-Research/AI-Research-SKILLs"
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-lg border border-border px-7 py-3.5 font-semibold text-muted transition-all hover:border-accent-pink/40 hover:text-accent-pink"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "7px",
+              background: "transparent",
+              color: "#0D1F18",
+              fontSize: "14px",
+              fontWeight: 600,
+              padding: "11px 22px",
+              borderRadius: "10px",
+              border: "1.5px solid #A8C8B8",
+              textDecoration: "none",
+              transition: "all 0.15s",
+            }}
+            className="btn-outline-hover"
           >
             GitHub →
+            <svg width="14" height="14" fill="none" viewBox="0 0 16 16">
+              <path
+                d="M3 8h10M9 4l4 4-4 4"
+                stroke="currentColor"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
           </a>
-        </div>
+        </motion.div>
+
+        {/* Stats */}
+        <motion.div variants={fadeUp} style={{ display: "flex", gap: "40px" }}>
+          <div>
+            <div
+              style={{
+                fontFamily: "var(--font-display, 'Bricolage Grotesque'), sans-serif",
+                fontSize: "36px",
+                fontWeight: 800,
+                color: "#007A52",
+                letterSpacing: "-1.5px",
+                lineHeight: 1,
+              }}
+            >
+              {TOTAL_SKILLS}
+            </div>
+            <div
+              style={{
+                fontFamily: "var(--font-mono, 'DM Mono'), monospace",
+                fontSize: "10px",
+                fontWeight: 500,
+                color: "#7A9B8A",
+                textTransform: "uppercase",
+                letterSpacing: "0.1em",
+                marginTop: "3px",
+              }}
+            >
+              Skills
+            </div>
+          </div>
+          <div>
+            <div
+              style={{
+                fontFamily: "var(--font-display, 'Bricolage Grotesque'), sans-serif",
+                fontSize: "36px",
+                fontWeight: 800,
+                color: "#007A52",
+                letterSpacing: "-1.5px",
+                lineHeight: 1,
+              }}
+            >
+              {TOTAL_CATEGORIES}
+            </div>
+            <div
+              style={{
+                fontFamily: "var(--font-mono, 'DM Mono'), monospace",
+                fontSize: "10px",
+                fontWeight: 500,
+                color: "#7A9B8A",
+                textTransform: "uppercase",
+                letterSpacing: "0.1em",
+                marginTop: "3px",
+              }}
+            >
+              Categories
+            </div>
+          </div>
+          <div>
+            <div
+              style={{
+                fontFamily: "var(--font-display, 'Bricolage Grotesque'), sans-serif",
+                fontSize: "36px",
+                fontWeight: 800,
+                color: "#FF3D8A",
+                letterSpacing: "-1.5px",
+                lineHeight: 1,
+              }}
+            >
+              {starsDisplay}
+            </div>
+            <div
+              style={{
+                fontFamily: "var(--font-mono, 'DM Mono'), monospace",
+                fontSize: "10px",
+                fontWeight: 500,
+                color: "#7A9B8A",
+                textTransform: "uppercase",
+                letterSpacing: "0.1em",
+                marginTop: "3px",
+              }}
+            >
+              Stars
+            </div>
+          </div>
+          <div>
+            <div
+              style={{
+                fontFamily: "var(--font-display, 'Bricolage Grotesque'), sans-serif",
+                fontSize: "36px",
+                fontWeight: 800,
+                color: "#FF3D8A",
+                letterSpacing: "-1.5px",
+                lineHeight: 1,
+              }}
+            >
+              MIT
+            </div>
+            <div
+              style={{
+                fontFamily: "var(--font-mono, 'DM Mono'), monospace",
+                fontSize: "10px",
+                fontWeight: 500,
+                color: "#7A9B8A",
+                textTransform: "uppercase",
+                letterSpacing: "0.1em",
+                marginTop: "3px",
+              }}
+            >
+              License
+            </div>
+          </div>
+        </motion.div>
       </motion.div>
+      </div>
     </section>
   );
 }

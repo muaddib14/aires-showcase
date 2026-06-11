@@ -1,45 +1,128 @@
 export default function CTABanner() {
   return (
-    <section className="px-6 py-20">
-      <div className="relative mx-auto max-w-3xl overflow-hidden rounded-2xl border border-accent-green/20 bg-surface p-10 text-center">
-        {/* Glow */}
-        <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-          <div className="h-64 w-96 rounded-full bg-accent-green/8 blur-[80px]" />
+    <section style={{ padding: "0 48px 64px", maxWidth: "1120px", margin: "0 auto" }}>
+      <div
+        style={{
+          background: "#0D1F18",
+          borderRadius: "20px",
+          padding: "60px 56px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          gap: "40px",
+          position: "relative",
+          overflow: "hidden",
+        }}
+      >
+        {/* Radial green glow top-right */}
+        <div
+          style={{
+            position: "absolute",
+            top: "-100px",
+            right: "-60px",
+            width: "320px",
+            height: "320px",
+            borderRadius: "50%",
+            background: "radial-gradient(circle, rgba(0,184,122,0.2) 0%, transparent 70%)",
+            pointerEvents: "none",
+          }}
+        />
+
+        {/* Left content */}
+        <div style={{ position: "relative", zIndex: 1 }}>
+          <div
+            style={{
+              fontFamily: "var(--font-mono, 'DM Mono'), monospace",
+              fontSize: "10px",
+              fontWeight: 500,
+              color: "#00B87A",
+              textTransform: "uppercase",
+              letterSpacing: "0.12em",
+              marginBottom: "10px",
+            }}
+          >
+            Get started now
+          </div>
+          <h2
+            style={{
+              fontFamily: "var(--font-display, 'Bricolage Grotesque'), sans-serif",
+              fontSize: "36px",
+              fontWeight: 800,
+              color: "white",
+              letterSpacing: "-1px",
+              marginBottom: "10px",
+            }}
+          >
+            Start with{" "}
+            <span style={{ color: "#FF3D8A" }}>Autoresearch</span>
+          </h2>
+          <p style={{ fontSize: "15px", color: "rgba(255,255,255,0.55)", maxWidth: "400px" }}>
+            The orchestrator skill that coordinates all others — from literature survey to paper submission.
+          </p>
         </div>
 
-        <div className="relative">
-          <h2 className="text-3xl font-bold">
-            Start with{" "}
-            <span className="bg-gradient-to-r from-accent-green to-accent-pink bg-clip-text text-transparent">
-              Autoresearch
-            </span>
-          </h2>
-          <p className="mx-auto mt-3 max-w-lg text-muted">
-            The orchestrator skill that coordinates all others — from literature
-            survey to paper submission. Requires Claude Code or compatible
-            agent.
-          </p>
-
-          <div className="mt-6 flex flex-wrap justify-center gap-4">
+        {/* Right content */}
+        <div style={{ position: "relative", zIndex: 1, flexShrink: 0, textAlign: "right" }}>
+          <div style={{ display: "flex", gap: "10px", justifyContent: "flex-end", marginBottom: "14px" }}>
             <a
               href="https://github.com/Orchestra-Research/AI-Research-SKILLs"
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-lg bg-accent-green px-6 py-3 font-semibold text-bg transition-all hover:bg-accent-green/90 hover:shadow-[0_0_28px_rgba(53,214,164,0.4)]"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "7px",
+                background: "#FF3D8A",
+                color: "white",
+                fontSize: "14px",
+                fontWeight: 600,
+                padding: "11px 22px",
+                borderRadius: "10px",
+                border: "none",
+                textDecoration: "none",
+                transition: "all 0.15s",
+              }}
             >
-              Install Skills →
+              Install Skills{" "}
+              <svg width="13" height="13" fill="none" viewBox="0 0 16 16">
+                <path
+                  d="M3 8h10M9 4l4 4-4 4"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
             </a>
             <a
               href="/skill/autoresearch"
-              className="rounded-lg border border-border px-6 py-3 font-semibold text-muted transition-all hover:border-accent-pink/40 hover:text-accent-pink"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "7px",
+                background: "transparent",
+                color: "rgba(255,255,255,0.7)",
+                fontSize: "14px",
+                fontWeight: 600,
+                padding: "11px 22px",
+                borderRadius: "10px",
+                border: "1.5px solid rgba(255,255,255,0.2)",
+                textDecoration: "none",
+                transition: "all 0.15s",
+              }}
             >
-              View Autoresearch Skill
+              View Skill
             </a>
           </div>
-
-          <p className="mt-4 font-mono text-xs text-muted/50">
-            npx @orchestra-research/ai-research-skills
-          </p>
+          <div
+            style={{
+              fontFamily: "var(--font-mono, 'DM Mono'), monospace",
+              fontSize: "11px",
+              color: "rgba(255,255,255,0.25)",
+            }}
+          >
+            npx aires install autoresearch
+          </div>
         </div>
       </div>
     </section>

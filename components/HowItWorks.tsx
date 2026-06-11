@@ -1,76 +1,173 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState } from "react";
 
 const STEPS = [
   {
     number: "01",
     title: "Choose a category",
     description:
-      "Browse 23 research categories — from fine-tuning to mech interp, distributed training to paper writing.",
+      "Browse 23 research categories — fine-tuning, mech interp, distributed training, paper writing, and more.",
     code: null,
   },
   {
     number: "02",
     title: "Pick your skills",
     description:
-      "Each skill is a focused SKILL.md with expert patterns, quick recipes, and deep reference docs.",
+      "Each skill is a focused SKILL.md with expert patterns, quick recipes, and progressive reference docs.",
     code: null,
   },
   {
     number: "03",
     title: "Install to your agent",
     description:
-      "One command. Works with Claude Code, Codex, Gemini CLI, and Cursor out of the box.",
-    code: "npx @orchestra-research/ai-research-skills",
+      "Works with Claude Code, Codex, Gemini CLI, and Cursor out of the box.",
+    code: "npx aires install autoresearch",
   },
 ] as const;
 
 export default function HowItWorks() {
+  const [copied, setCopied] = useState(false);
+
+  function handleCopy(text: string) {
+    navigator.clipboard.writeText(text).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1500);
+    });
+  }
+
   return (
-    <section id="how-it-works" className="px-6 py-20">
-      <div className="mx-auto max-w-5xl">
-        <div className="mb-12 text-center">
-          <h2 className="text-3xl font-bold">Three steps. No setup.</h2>
-          <p className="mt-2 text-muted">
-            From zero to expert AI research agent in minutes.
-          </p>
-        </div>
+    <section
+      id="how-it-works"
+      style={{ maxWidth: "1120px", margin: "0 auto", padding: "56px 48px" }}
+    >
+      <div
+        style={{
+          fontFamily: "var(--font-mono, 'DM Mono'), monospace",
+          fontSize: "10px",
+          fontWeight: 500,
+          color: "#7A9B8A",
+          textTransform: "uppercase",
+          letterSpacing: "0.12em",
+          marginBottom: "6px",
+        }}
+      >
+        How It Works
+      </div>
+      <div
+        style={{
+          fontFamily: "var(--font-display, 'Bricolage Grotesque'), sans-serif",
+          fontSize: "28px",
+          fontWeight: 800,
+          letterSpacing: "-0.5px",
+          color: "#0D1F18",
+          marginBottom: "4px",
+        }}
+      >
+        Three steps. No setup.
+      </div>
+      <div style={{ fontSize: "14px", color: "#4A6558", marginBottom: "28px" }}>
+        From zero to expert AI research agent in minutes.
+      </div>
 
-        <div className="grid gap-6 md:grid-cols-3">
-          {STEPS.map((step, i) => (
-            <motion.div
-              key={step.number}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: i * 0.1 }}
-              className="relative rounded-xl border border-border bg-surface p-6"
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(3, 1fr)",
+          gap: "16px",
+        }}
+      >
+        {STEPS.map((step) => (
+          <div
+            key={step.number}
+            style={{
+              background: "#FFFFFF",
+              border: "1.5px solid #C8DDD4",
+              borderRadius: "12px",
+              padding: "28px",
+            }}
+          >
+            {/* Step badge */}
+            <div
+              style={{
+                width: "32px",
+                height: "32px",
+                borderRadius: "8px",
+                background: "#F4FAF7",
+                border: "1.5px solid #C8DDD4",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontFamily: "var(--font-mono, 'DM Mono'), monospace",
+                fontSize: "11px",
+                fontWeight: 500,
+                color: "#4A6558",
+                marginBottom: "16px",
+              }}
             >
-              <div className="mb-4 font-mono text-4xl font-bold text-accent-green/20">
-                {step.number}
+              {step.number}
+            </div>
+
+            <h3
+              style={{
+                fontFamily: "var(--font-display, 'Bricolage Grotesque'), sans-serif",
+                fontSize: "17px",
+                fontWeight: 700,
+                color: "#0D1F18",
+                letterSpacing: "-0.3px",
+                marginBottom: "8px",
+              }}
+            >
+              {step.title}
+            </h3>
+            <p style={{ fontSize: "13px", color: "#4A6558", lineHeight: 1.6 }}>
+              {step.description}
+            </p>
+
+            {step.code && (
+              <div
+                style={{
+                  marginTop: "16px",
+                  background: "#0D1F18",
+                  borderRadius: "8px",
+                  padding: "11px 14px",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "10px",
+                }}
+              >
+                <code
+                  style={{
+                    fontFamily: "var(--font-mono, 'DM Mono'), monospace",
+                    fontSize: "11px",
+                    color: "#7EE8BE",
+                    flex: 1,
+                  }}
+                >
+                  {step.code}
+                </code>
+                <button
+                  onClick={() => handleCopy(step.code!)}
+                  style={{
+                    fontFamily: "var(--font-sans, 'Plus Jakarta Sans'), sans-serif",
+                    fontSize: "10px",
+                    fontWeight: 600,
+                    color: "rgba(255,255,255,0.5)",
+                    background: "rgba(255,255,255,0.1)",
+                    border: "none",
+                    borderRadius: "5px",
+                    padding: "4px 8px",
+                    cursor: "pointer",
+                    transition: "all 0.15s",
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  {copied ? "Copied!" : "Copy"}
+                </button>
               </div>
-
-              {/* Connector arrow (not on last) */}
-              {i < STEPS.length - 1 && (
-                <div className="absolute -right-3.5 top-8 hidden h-px w-7 bg-gradient-to-r from-accent-green/30 to-transparent md:block" />
-              )}
-
-              <h3 className="mb-2 font-semibold text-text">{step.title}</h3>
-              <p className="text-sm leading-relaxed text-muted">
-                {step.description}
-              </p>
-
-              {step.code && (
-                <div className="mt-4 rounded-lg border border-border bg-bg px-3 py-2.5">
-                  <code className="font-mono text-xs text-accent-green">
-                    {step.code}
-                  </code>
-                </div>
-              )}
-            </motion.div>
-          ))}
-        </div>
+            )}
+          </div>
+        ))}
       </div>
     </section>
   );
