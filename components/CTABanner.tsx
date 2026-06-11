@@ -65,7 +65,7 @@ export default function CTABanner() {
         <div style={{ position: "relative", zIndex: 1, flexShrink: 0, textAlign: "right" }}>
           <div style={{ display: "flex", gap: "10px", justifyContent: "flex-end", marginBottom: "14px" }}>
             <a
-              href="https://github.com/Orchestra-Research/AI-Research-SKILLs"
+              href="https://github.com/Demerzels-lab/Aires-Research-Agent"
               target="_blank"
               rel="noopener noreferrer"
               style={{

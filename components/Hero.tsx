@@ -147,7 +147,7 @@ export default function Hero() {
             </svg>
           </a>
           <a
-            href="https://github.com/Orchestra-Research/AI-Research-SKILLs"
+            href="https://github.com/Demerzels-lab/Aires-Research-Agent"
             target="_blank"
             rel="noopener noreferrer"
             style={{

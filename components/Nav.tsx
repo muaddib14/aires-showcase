@@ -93,7 +93,7 @@ export default function Nav() {
           How it works
         </Link>
         <a
-          href="https://github.com/Orchestra-Research/AI-Research-SKILLs"
+          href="https://github.com/Demerzels-lab/Aires-Research-Agent"
           target="_blank"
           rel="noopener noreferrer"
           style={{

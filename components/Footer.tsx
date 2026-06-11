@@ -66,7 +66,7 @@ export default function Footer() {
         {[
           { href: "/#catalog", label: "catalog" },
           { href: "/#how-it-works", label: "how-it-works" },
-          { href: "https://github.com/Orchestra-Research/AI-Research-SKILLs", label: "github", external: true },
+          { href: "https://github.com/Demerzels-lab/Aires-Research-Agent", label: "github", external: true },
           { href: "https://claudefinance.fun", label: "wealth.id", external: true, pink: true },
         ].map((link) => (
           link.external ? (
