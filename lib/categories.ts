@@ -89,7 +89,7 @@ export const CATEGORIES: Category[] = [
   {
     code: "13",
     slug: "13-mlops",
-    label: "Mlops",
+    label: "MLOps",
     description: "Track ML experiments, manage model registry with versioning, deploy models to production, and reproduce experiments with MLflow - framework-agnostic ML lifecycle platform.",
   },
   {
@@ -101,7 +101,7 @@ export const CATEGORIES: Category[] = [
   {
     code: "15",
     slug: "15-rag",
-    label: "Rag",
+    label: "RAG",
     description: "Open-source embedding database for AI applications.",
   },
   {
@@ -120,7 +120,7 @@ export const CATEGORIES: Category[] = [
     code: "18",
     slug: "18-multimodal",
     label: "Multimodal",
-    description: "PyTorch library for audio generation including text-to-music (MusicGen) and text-to-sound (AudioGen).",
+    description: "PyTorch library for audio, image, and video generation including text-to-music (MusicGen) and text-to-sound (AudioGen).",
   },
   {
     code: "19",
@@ -131,7 +131,7 @@ export const CATEGORIES: Category[] = [
   {
     code: "20",
     slug: "20-ml-paper-writing",
-    label: "Ml Paper Writing",
+    label: "ML Paper Writing",
     description: "Generates publication-quality figures for ML papers from research context.",
   },
   {

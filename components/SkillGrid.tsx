@@ -223,12 +223,12 @@ export default function SkillGrid() {
                 <span
                   style={{
                     fontFamily: "var(--font-mono, 'DM Mono'), monospace",
-                    fontSize: "10px",
-                    fontWeight: 500,
-                    color: "#007A52",
-                    background: "#E0F7EE",
-                    borderRadius: "100px",
-                    padding: "2px 8px",
+                    fontSize: "9px",
+                    fontWeight: 400,
+                    color: "#7A9B8A",
+                    background: "#F5F5F5",
+                    borderRadius: "4px",
+                    padding: "2px 6px",
                   }}
                 >
                   {category?.label ?? skill.categorySlug}
@@ -253,9 +253,13 @@ export default function SkillGrid() {
               <p
                 style={{
                   fontSize: "13px",
-                  color: "#4A6558",
+                  color: "#28332C",
                   lineHeight: 1.6,
                   flex: 1,
+                  display: "-webkit-box",
+                  WebkitLineClamp: 3,
+                  WebkitBoxOrient: "vertical",
+                  overflow: "hidden",
                 }}
               >
                 {skill.description}
