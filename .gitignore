@@ -41,5 +41,5 @@ _skills-source/
 # Claude Code local settings
 .claude/
 
-# Planning docs — not part of the website
-docs/
+# Planning docs — not part of the website (root only, not app/docs route)
+/docs/
