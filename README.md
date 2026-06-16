@@ -1,36 +1,48 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Aires - AI Research SKILLs Catalog
 
-## Getting Started
+A production catalog showcasing 98 AI research skills across 23 categories. Built on the open-source [AI-Research-SKILLs](https://github.com/Demerzels-lab/Aires-Research-Agent) library.
 
-First, run the development server:
+## What is this?
+
+Aires is a Next.js website that helps developers and researchers discover, browse, and install AI research skills (SKILL.md files) for use with Claude Code, Codex, Gemini CLI, Cursor, or Claude chat.
+
+Two installation paths are supported:
+- **Path A (CLI)**: `npx ai-research-skills install <skill>` — for developers and coding agents
+- **Path B (Upload)**: Download SKILL.md from GitHub, upload to claude.ai/customize/skills — for Claude chat users
+
+## Tech Stack
+
+- **Framework**: Next.js 14.2 (App Router, static pre-rendering)
+- **Styling**: Tailwind CSS + inline styles
+- **Animation**: Framer Motion
+- **License**: MIT
+
+## Development
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3001](http://localhost:3001) to view the site.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+```
 
-## Learn More
+## Project Structure
 
-To learn more about Next.js, take a look at the following resources:
+- `app/` — Next.js App Router pages (`/`, `/docs`, `/skill/[slug]`)
+- `components/` — React components (Hero, SkillGrid, SkillDetail, DocsContent, etc.)
+- `lib/` — Skill data, categories, and utility functions
+- `public/` — Static assets (logo, images)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Skill Data
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Skills and categories are defined in `lib/skills.ts` and `lib/categories.ts`, auto-generated from the upstream [AI-Research-SKILLs](https://github.com/Demerzels-lab/Aires-Research-Agent) repository.
 
-## Deploy on Vercel
+## License
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+MIT — see the upstream [AI-Research-SKILLs](https://github.com/Demerzels-lab/Aires-Research-Agent) repository for skill licensing.
