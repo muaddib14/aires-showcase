@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Nav() {
   return (
@@ -36,23 +37,19 @@ export default function Nav() {
           style={{
             width: "28px",
             height: "28px",
-            background: "#FF3D8A",
-            borderRadius: "7px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
+            borderRadius: "50%",
+            overflow: "hidden",
+            position: "relative",
             flexShrink: 0,
           }}
         >
-          <svg width="14" height="14" fill="none" viewBox="0 0 16 16">
-            <path
-              d="M3 8L7 12L13 4"
-              stroke="white"
-              strokeWidth="2.2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
+          <Image
+            src="/Logo.webp"
+            alt="Aires mascot"
+            fill
+            sizes="28px"
+            style={{ objectFit: "cover" }}
+          />
         </span>
         Aires
         <span style={{ color: "#4A6558", fontWeight: 500, fontSize: "17px" }}>

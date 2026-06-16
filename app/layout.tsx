@@ -6,6 +6,7 @@ import {
   DM_Mono,
 } from "next/font/google";
 import Nav from "@/components/Nav";
+import AmbientBackground from "@/components/AmbientBackground";
 import "./globals.css";
 
 const bricolage = Bricolage_Grotesque({
@@ -59,8 +60,11 @@ export default function RootLayout({
       className={`${bricolage.variable} ${cormorant.variable} ${jakarta.variable} ${dmMono.variable}`}
     >
       <body className="bg-bg text-text antialiased font-sans">
-        <Nav />
-        {children}
+        <AmbientBackground />
+        <div style={{ position: "relative", zIndex: 1 }}>
+          <Nav />
+          {children}
+        </div>
       </body>
     </html>
   );
