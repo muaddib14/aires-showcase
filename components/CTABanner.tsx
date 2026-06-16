@@ -141,7 +141,7 @@ export default function CTABanner() {
               color: "rgba(255,255,255,0.25)",
             }}
           >
-            npx aires install autoresearch
+            npx ai-research-skills install autoresearch
           </div>
         </div>
       </div>

@@ -41,11 +41,14 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://aires.skills"),
   title: "Aires — AI Research SKILLs",
   description:
-    "98 AI research skills across 23 categories. Full lifecycle from hypothesis to paper. Power any AI agent with Orchestra Research's open-source skill library.",
+    "98 AI research skills across 23 categories. Full lifecycle from hypothesis to paper. Built on the open-source AI-Research-SKILLs library (MIT) — install into any AI agent.",
   openGraph: {
     title: "Aires — AI Research SKILLs",
     description: "98 skills. 23 categories. Full AI research lifecycle.",
     images: [{ url: "/og-image.png", width: 1200, height: 630 }],
+  },
+  icons: {
+    icon: "/Logo.webp",
   },
 };
 

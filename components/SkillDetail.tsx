@@ -28,8 +28,8 @@ export default function SkillDetail({ skill }: Props) {
 
   return (
     <div style={{ minHeight: "100vh" }}>
-      <div style={{ maxWidth: "880px", margin: "0 auto", padding: "48px 32px 80px" }}>
-        {/* Breadcrumb */}
+      <div style={{ maxWidth: "1120px", margin: "0 auto", padding: "48px 32px 80px" }}>
+        {/* Back to catalog */}
         <Link
           href="/#catalog"
           style={{
@@ -40,7 +40,7 @@ export default function SkillDetail({ skill }: Props) {
             fontSize: "12px",
             color: "#4A6558",
             textDecoration: "none",
-            marginBottom: "36px",
+            marginBottom: "20px",
             padding: "6px 12px",
             borderRadius: "8px",
             border: "1.5px solid #C8DDD4",
@@ -54,6 +54,47 @@ export default function SkillDetail({ skill }: Props) {
           Back to catalog
         </Link>
 
+        {/* Breadcrumb */}
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "8px",
+            fontFamily: "var(--font-mono, 'DM Mono'), monospace",
+            fontSize: "12px",
+            color: "#7A9B8A",
+            marginBottom: "28px",
+            flexWrap: "wrap",
+          }}
+        >
+          <Link href="/" style={{ color: "#4A6558", textDecoration: "none" }}>
+            Home
+          </Link>
+          <span>/</span>
+          <Link href="/#catalog" style={{ color: "#4A6558", textDecoration: "none" }}>
+            Skills
+          </Link>
+          {category && (
+            <>
+              <span>/</span>
+              <span style={{ color: "#4A6558" }}>{category.label}</span>
+            </>
+          )}
+          <span>/</span>
+          <span style={{ color: "#0D1F18", fontWeight: 600 }}>{skill.name}</span>
+        </div>
+
+        {/* Two-column: main content + sticky sidebar */}
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1fr 320px",
+            gap: "24px",
+            alignItems: "start",
+          }}
+          className="skill-detail-grid"
+        >
+        <div style={{ minWidth: 0 }}>
         {/* Header card */}
         <div
           style={{
@@ -127,205 +168,57 @@ export default function SkillDetail({ skill }: Props) {
               color: "#4A6558",
               lineHeight: 1.7,
               maxWidth: "640px",
-              marginBottom: "28px",
             }}
           >
             {skill.description}
           </p>
-
-          {/* Install command */}
-          <div
-            style={{
-              background: "#0D1F18",
-              borderRadius: "10px",
-              padding: "14px 18px",
-              display: "flex",
-              alignItems: "center",
-              gap: "12px",
-              marginBottom: "20px",
-              maxWidth: "560px",
-            }}
-          >
-            <span style={{ color: "#7A9B8A", fontFamily: "var(--font-mono, 'DM Mono'), monospace", fontSize: "13px" }}>$</span>
-            <code
-              style={{
-                fontFamily: "var(--font-mono, 'DM Mono'), monospace",
-                fontSize: "13px",
-                color: "#7EE8BE",
-                flex: 1,
-                overflow: "hidden",
-                textOverflow: "ellipsis",
-                whiteSpace: "nowrap",
-              }}
-            >
-              {installCmd}
-            </code>
-            <button
-              onClick={copy}
-              style={{
-                fontFamily: "var(--font-sans, 'Plus Jakarta Sans'), sans-serif",
-                fontSize: "11px",
-                fontWeight: 600,
-                color: copied ? "#7EE8BE" : "rgba(255,255,255,0.6)",
-                background: "rgba(255,255,255,0.08)",
-                border: "1px solid rgba(255,255,255,0.15)",
-                borderRadius: "6px",
-                padding: "5px 12px",
-                cursor: "pointer",
-                transition: "all 0.15s",
-                whiteSpace: "nowrap",
-              }}
-            >
-              {copied ? "Copied!" : "Copy"}
-            </button>
-          </div>
-
-          {/* CTAs */}
-          <div style={{ display: "flex", flexWrap: "wrap", gap: "10px" }}>
-            <a
-              href={ghUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "7px",
-                background: "#FF3D8A",
-                color: "white",
-                fontSize: "14px",
-                fontWeight: 600,
-                padding: "10px 20px",
-                borderRadius: "10px",
-                textDecoration: "none",
-                transition: "all 0.15s",
-              }}
-            >
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23a11.509 11.509 0 016.002 0c2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
-              </svg>
-              View SKILL.md
-            </a>
-            <a
-              href="https://github.com/Demerzels-lab/Aires-Research-Agent"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "7px",
-                background: "transparent",
-                color: "#0D1F18",
-                fontSize: "14px",
-                fontWeight: 600,
-                padding: "10px 20px",
-                borderRadius: "10px",
-                border: "1.5px solid #A8C8B8",
-                textDecoration: "none",
-                transition: "all 0.15s",
-              }}
-            >
-              Full repository
-              <svg width="13" height="13" fill="none" viewBox="0 0 16 16">
-                <path d="M2 14L14 2M14 2H6M14 2V10" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </a>
-          </div>
         </div>
 
-        {/* Two-column info */}
+        {/* Works-with section */}
         <div
           style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: "16px",
+            background: "#FFFFFF",
+            border: "1.5px solid #C8DDD4",
+            borderRadius: "14px",
+            padding: "24px",
             marginBottom: "40px",
           }}
         >
-          {/* Category card */}
-          {category && (
-            <div
-              style={{
-                background: "#FFFFFF",
-                border: "1.5px solid #C8DDD4",
-                borderRadius: "14px",
-                padding: "24px",
-              }}
-            >
-              <div
-                style={{
-                  fontFamily: "var(--font-mono, 'DM Mono'), monospace",
-                  fontSize: "10px",
-                  fontWeight: 500,
-                  color: "#7A9B8A",
-                  textTransform: "uppercase",
-                  letterSpacing: "0.12em",
-                  marginBottom: "10px",
-                }}
-              >
-                About this category
-              </div>
-              <div
-                style={{
-                  fontFamily: "var(--font-display, 'Bricolage Grotesque'), sans-serif",
-                  fontSize: "17px",
-                  fontWeight: 700,
-                  color: "#0D1F18",
-                  marginBottom: "8px",
-                }}
-              >
-                {category.label}
-              </div>
-              <p style={{ fontSize: "13px", color: "#4A6558", lineHeight: 1.65 }}>
-                {category.description}
-              </p>
-            </div>
-          )}
-
-          {/* Works-with card */}
           <div
             style={{
-              background: "#FFFFFF",
-              border: "1.5px solid #C8DDD4",
-              borderRadius: "14px",
-              padding: "24px",
+              fontFamily: "var(--font-mono, 'DM Mono'), monospace",
+              fontSize: "10px",
+              fontWeight: 500,
+              color: "#7A9B8A",
+              textTransform: "uppercase",
+              letterSpacing: "0.12em",
+              marginBottom: "10px",
             }}
           >
-            <div
-              style={{
-                fontFamily: "var(--font-mono, 'DM Mono'), monospace",
-                fontSize: "10px",
-                fontWeight: 500,
-                color: "#7A9B8A",
-                textTransform: "uppercase",
-                letterSpacing: "0.12em",
-                marginBottom: "10px",
-              }}
-            >
-              Works with
-            </div>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: "6px" }}>
-              {["Claude Code", "Codex", "Gemini CLI", "Cursor"].map((agent) => (
-                <span
-                  key={agent}
-                  style={{
-                    fontFamily: "var(--font-sans, 'Plus Jakarta Sans'), sans-serif",
-                    fontSize: "12.5px",
-                    fontWeight: 600,
-                    color: "#2A4035",
-                    background: "#F4FAF7",
-                    border: "1.5px solid #C8DDD4",
-                    borderRadius: "8px",
-                    padding: "6px 12px",
-                  }}
-                >
-                  {agent}
-                </span>
-              ))}
-            </div>
-            <p style={{ fontSize: "12.5px", color: "#7A9B8A", marginTop: "12px", lineHeight: 1.6 }}>
-              One command install — skill auto-loads when your agent needs it.
-            </p>
+            ◆ Works with
           </div>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "6px" }}>
+            {["Claude Code", "Codex", "Gemini CLI", "Cursor"].map((agent) => (
+              <span
+                key={agent}
+                style={{
+                  fontFamily: "var(--font-sans, 'Plus Jakarta Sans'), sans-serif",
+                  fontSize: "12.5px",
+                  fontWeight: 600,
+                  color: "#2A4035",
+                  background: "#F4FAF7",
+                  border: "1.5px solid #C8DDD4",
+                  borderRadius: "8px",
+                  padding: "6px 12px",
+                }}
+              >
+                {agent}
+              </span>
+            ))}
+          </div>
+          <p style={{ fontSize: "12.5px", color: "#7A9B8A", marginTop: "12px", lineHeight: 1.6 }}>
+            One command install — skill auto-loads when your agent needs it.
+          </p>
         </div>
 
         {/* Related skills */}
@@ -419,6 +312,191 @@ export default function SkillDetail({ skill }: Props) {
             </div>
           </div>
         )}
+        </div>
+
+        {/* Sidebar — sticky */}
+        <div style={{ position: "sticky", top: "76px" }} className="skill-detail-sidebar">
+          <div
+            style={{
+              background: "#0D1F18",
+              borderRadius: "16px",
+              padding: "24px",
+              marginBottom: "16px",
+            }}
+          >
+            <div
+              style={{
+                fontFamily: "var(--font-mono, 'DM Mono'), monospace",
+                fontSize: "10px",
+                fontWeight: 500,
+                color: "#00B87A",
+                textTransform: "uppercase",
+                letterSpacing: "0.12em",
+                marginBottom: "12px",
+              }}
+            >
+              ◆ Get this skill
+            </div>
+            <div
+              style={{
+                fontFamily: "var(--font-display, 'Bricolage Grotesque'), sans-serif",
+                fontSize: "17px",
+                fontWeight: 700,
+                color: "#FFFFFF",
+                marginBottom: "16px",
+              }}
+            >
+              {skill.name}
+            </div>
+
+            {/* Install command */}
+            <div
+              style={{
+                background: "rgba(255,255,255,0.06)",
+                border: "1px solid rgba(255,255,255,0.1)",
+                borderRadius: "10px",
+                padding: "12px 14px",
+                display: "flex",
+                alignItems: "center",
+                gap: "10px",
+                marginBottom: "14px",
+              }}
+            >
+              <span style={{ color: "#7A9B8A", fontFamily: "var(--font-mono, 'DM Mono'), monospace", fontSize: "12px" }}>$</span>
+              <code
+                style={{
+                  fontFamily: "var(--font-mono, 'DM Mono'), monospace",
+                  fontSize: "12px",
+                  color: "#7EE8BE",
+                  flex: 1,
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                {installCmd}
+              </code>
+              <button
+                onClick={copy}
+                style={{
+                  fontFamily: "var(--font-sans, 'Plus Jakarta Sans'), sans-serif",
+                  fontSize: "10.5px",
+                  fontWeight: 600,
+                  color: copied ? "#7EE8BE" : "rgba(255,255,255,0.6)",
+                  background: "rgba(255,255,255,0.08)",
+                  border: "1px solid rgba(255,255,255,0.15)",
+                  borderRadius: "6px",
+                  padding: "4px 10px",
+                  cursor: "pointer",
+                  transition: "all 0.15s",
+                  whiteSpace: "nowrap",
+                  flexShrink: 0,
+                }}
+              >
+                {copied ? "✓" : "Copy"}
+              </button>
+            </div>
+
+            {/* CTAs */}
+            <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+              <a
+                href={ghUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: "7px",
+                  background: "#FF3D8A",
+                  color: "white",
+                  fontSize: "13px",
+                  fontWeight: 600,
+                  padding: "10px 16px",
+                  borderRadius: "9px",
+                  textDecoration: "none",
+                  transition: "all 0.15s",
+                }}
+              >
+                View SKILL.md
+              </a>
+              <a
+                href="https://github.com/Demerzels-lab/Aires-Research-Agent"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: "7px",
+                  background: "transparent",
+                  color: "rgba(255,255,255,0.7)",
+                  fontSize: "13px",
+                  fontWeight: 600,
+                  padding: "10px 16px",
+                  borderRadius: "9px",
+                  border: "1.5px solid rgba(255,255,255,0.15)",
+                  textDecoration: "none",
+                  transition: "all 0.15s",
+                }}
+              >
+                Full repository
+              </a>
+            </div>
+          </div>
+
+          {/* Part of category */}
+          {category && (
+            <div
+              style={{
+                background: "#FFFFFF",
+                border: "1.5px solid #C8DDD4",
+                borderRadius: "14px",
+                padding: "20px",
+              }}
+            >
+              <div
+                style={{
+                  fontFamily: "var(--font-mono, 'DM Mono'), monospace",
+                  fontSize: "10px",
+                  fontWeight: 500,
+                  color: "#7A9B8A",
+                  textTransform: "uppercase",
+                  letterSpacing: "0.12em",
+                  marginBottom: "10px",
+                }}
+              >
+                ◆ Part of category
+              </div>
+              <div
+                style={{
+                  fontFamily: "var(--font-display, 'Bricolage Grotesque'), sans-serif",
+                  fontSize: "16px",
+                  fontWeight: 700,
+                  color: "#0D1F18",
+                  marginBottom: "6px",
+                }}
+              >
+                {category.label}
+              </div>
+              <p style={{ fontSize: "12.5px", color: "#4A6558", lineHeight: 1.6, marginBottom: "10px" }}>
+                {category.description}
+              </p>
+              <Link
+                href="/#catalog"
+                style={{
+                  fontFamily: "var(--font-mono, 'DM Mono'), monospace",
+                  fontSize: "11.5px",
+                  color: "#DB2777",
+                  textDecoration: "none",
+                }}
+              >
+                Browse all skills →
+              </Link>
+            </div>
+          )}
+        </div>
+      </div>
       </div>
     </div>
   );

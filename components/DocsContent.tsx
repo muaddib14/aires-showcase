@@ -108,44 +108,47 @@ export default function DocsContent() {
       <div
         style={{
           borderBottom: "1.5px solid #C8DDD4",
-          background:
-            "linear-gradient(180deg, #DFF0E8 0%, #E8F2ED 100%)",
-          padding: "64px 48px 56px",
+          background: "linear-gradient(135deg, #FFFFFF 0%, #F4FAF7 50%, #E8F2ED 100%)",
+          padding: "72px 48px 64px",
         }}
       >
         <div style={{ maxWidth: "1060px", margin: "0 auto" }}>
           <div
             style={{
               fontFamily: MONO,
-              fontSize: "11px",
-              fontWeight: 500,
-              color: "#007A52",
-              letterSpacing: "0.1em",
+              fontSize: "10px",
+              fontWeight: 600,
+              color: "#00B87A",
+              letterSpacing: "0.15em",
               textTransform: "uppercase",
-              marginBottom: "16px",
+              marginBottom: "18px",
+              display: "flex",
+              alignItems: "center",
+              gap: "8px",
             }}
           >
-            Quick Start · No code required
+            <span style={{ width: "4px", height: "4px", background: "#FF3D8A", borderRadius: "50%" }} />
+            Getting Started
           </div>
           <h1
             style={{
               fontFamily: DISPLAY,
-              fontSize: "clamp(32px, 5vw, 52px)",
+              fontSize: "clamp(36px, 5.5vw, 56px)",
               fontWeight: 800,
-              letterSpacing: "-1.2px",
-              lineHeight: 1.05,
+              letterSpacing: "-1.5px",
+              lineHeight: 1.08,
               color: "#0D1F18",
-              marginBottom: "14px",
+              marginBottom: "18px",
+              maxWidth: "650px",
             }}
           >
-            Getting Started{" "}
-            <span style={{ color: "#7A9B8A", fontWeight: 700 }}>
-              in under 5 minutes
+            Two ways to install skills{" "}
+            <span style={{ color: "#FF3D8A", fontStyle: "italic", fontFamily: "'Cormorant Garamond', serif", fontWeight: 700, letterSpacing: 0 }}>
+              in 5 minutes
             </span>
           </h1>
-          <p style={{ fontSize: "16px", color: "#4A6558", maxWidth: "520px", lineHeight: 1.65 }}>
-            How to install a skill and add it to your agent. No API keys. No
-            code. No setup.
+          <p style={{ fontSize: "17px", color: "#4A6558", maxWidth: "600px", lineHeight: 1.7 }}>
+            Choose Path A (command line for developers) or Path B (upload SKILL.md to Claude chat). No API keys. No code. No setup.
           </p>
         </div>
       </div>
@@ -153,12 +156,12 @@ export default function DocsContent() {
       {/* ── Body: sidebar + content ── */}
       <div
         style={{
-          maxWidth: "1060px",
+          maxWidth: "1100px",
           margin: "0 auto",
-          padding: "48px 48px 96px",
+          padding: "56px 48px 96px",
           display: "grid",
-          gridTemplateColumns: "200px 1fr",
-          gap: "48px",
+          gridTemplateColumns: "220px 1fr",
+          gap: "56px",
           alignItems: "start",
         }}
       >
@@ -167,38 +170,41 @@ export default function DocsContent() {
           <div
             style={{
               fontFamily: MONO,
-              fontSize: "10px",
-              fontWeight: 500,
+              fontSize: "9.5px",
+              fontWeight: 700,
               color: "#7A9B8A",
               textTransform: "uppercase",
-              letterSpacing: "0.12em",
-              marginBottom: "12px",
+              letterSpacing: "0.15em",
+              marginBottom: "16px",
             }}
           >
             On this page
           </div>
-          <nav style={{ display: "flex", flexDirection: "column", gap: "2px", marginBottom: "28px" }}>
+          <nav style={{ display: "flex", flexDirection: "column", gap: "4px", marginBottom: "32px" }}>
             {TOC.map((item) => (
               <a
                 key={item.id}
                 href={`#${item.id}`}
                 style={{
-                  fontSize: "13px",
+                  fontSize: "13.5px",
                   fontWeight: 500,
                   color: "#4A6558",
                   textDecoration: "none",
-                  padding: "6px 10px",
-                  borderRadius: "7px",
-                  borderLeft: "2px solid #C8DDD4",
+                  padding: "7px 12px",
+                  borderRadius: "8px",
+                  borderLeft: "2.5px solid #C8DDD4",
                   transition: "all 0.15s",
+                  display: "block",
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.color = "#007A52";
-                  e.currentTarget.style.borderLeftColor = "#00B87A";
+                  e.currentTarget.style.borderLeftColor = "#FF3D8A";
+                  e.currentTarget.style.background = "rgba(0,184,122,0.05)";
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.color = "#4A6558";
                   e.currentTarget.style.borderLeftColor = "#C8DDD4";
+                  e.currentTarget.style.background = "transparent";
                 }}
               >
                 {item.label}
@@ -294,20 +300,24 @@ export default function DocsContent() {
           </section>
 
           {/* Install */}
-          <section id="install" style={{ scrollMarginTop: "84px", marginBottom: "56px" }}>
-            <h2
-              style={{
-                fontFamily: DISPLAY,
-                fontSize: "26px",
-                fontWeight: 800,
-                letterSpacing: "-0.5px",
-                color: "#0D1F18",
-                marginBottom: "26px",
-              }}
-            >
-              Install a skill{" "}
-              <span style={{ color: "#7A9B8A", fontWeight: 700 }}>— step by step</span>
-            </h2>
+          <section id="install" style={{ scrollMarginTop: "84px", marginBottom: "64px" }}>
+            <div style={{ marginBottom: "32px" }}>
+              <h2
+                style={{
+                  fontFamily: DISPLAY,
+                  fontSize: "clamp(26px, 4vw, 32px)",
+                  fontWeight: 800,
+                  letterSpacing: "-1px",
+                  color: "#0D1F18",
+                  marginBottom: "8px",
+                }}
+              >
+                Install a skill
+              </h2>
+              <p style={{ fontSize: "15px", color: "#7A9B8A", lineHeight: 1.6 }}>
+                Pick your path below. Both work equally well.
+              </p>
+            </div>
 
             {/* Step 1 */}
             <div style={{ display: "flex", gap: "18px", marginBottom: "8px" }}>
@@ -489,19 +499,24 @@ export default function DocsContent() {
           </section>
 
           {/* Recommended order */}
-          <section id="recommended" style={{ scrollMarginTop: "84px", marginBottom: "56px" }}>
-            <h2
-              style={{
-                fontFamily: DISPLAY,
-                fontSize: "26px",
-                fontWeight: 800,
-                letterSpacing: "-0.5px",
-                color: "#0D1F18",
-                marginBottom: "16px",
-              }}
-            >
-              Recommended order
-            </h2>
+          <section id="recommended" style={{ scrollMarginTop: "84px", marginBottom: "64px" }}>
+            <div style={{ marginBottom: "28px" }}>
+              <h2
+                style={{
+                  fontFamily: DISPLAY,
+                  fontSize: "clamp(26px, 4vw, 32px)",
+                  fontWeight: 800,
+                  letterSpacing: "-1px",
+                  color: "#0D1F18",
+                  marginBottom: "8px",
+                }}
+              >
+                Recommended order
+              </h2>
+              <p style={{ fontSize: "15px", color: "#7A9B8A", lineHeight: 1.6 }}>
+                Start with orchestration, add domain skills, finish with paper writing.
+              </p>
+            </div>
             <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
               {[
                 {
@@ -559,17 +574,23 @@ export default function DocsContent() {
 
           {/* FAQ */}
           <section id="faq" style={{ scrollMarginTop: "84px" }}>
-            <h2
-              style={{
-                fontFamily: DISPLAY,
-                fontSize: "26px",
-                fontWeight: 800,
-                letterSpacing: "-0.5px",
-                color: "#0D1F18",
-                marginBottom: "16px",
-              }}
-            >
-              FAQ
+            <div style={{ marginBottom: "28px" }}>
+              <h2
+                style={{
+                  fontFamily: DISPLAY,
+                  fontSize: "clamp(26px, 4vw, 32px)",
+                  fontWeight: 800,
+                  letterSpacing: "-1px",
+                  color: "#0D1F18",
+                  marginBottom: "8px",
+                }}
+              >
+                FAQ
+              </h2>
+              <p style={{ fontSize: "15px", color: "#7A9B8A", lineHeight: 1.6 }}>
+                Everything else you need to know.
+              </p>
+            </div>
             </h2>
             <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
               {FAQS.map((faq) => (

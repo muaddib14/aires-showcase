@@ -1,5 +1,5 @@
 import Hero from "@/components/Hero";
-import MarqueeBar from "@/components/MarqueeBar";
+import WhatsASkill from "@/components/WhatsASkill";
 import HowItWorks from "@/components/HowItWorks";
 import WhyAires from "@/components/WhyAires";
 import SkillGrid from "@/components/SkillGrid";
@@ -11,7 +11,7 @@ export default function HomePage() {
   return (
     <main className="min-h-screen">
       <Hero />
-      <MarqueeBar />
+      <SectionReveal><WhatsASkill /></SectionReveal>
       <div className="h-px bg-border max-w-[1024px] mx-auto" />
       <SectionReveal><SkillGrid /></SectionReveal>
       <div className="h-px bg-border max-w-[1024px] mx-auto" />

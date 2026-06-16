@@ -61,7 +61,7 @@ export default function Hero() {
               display: "inline-block",
             }}
           />
-          Orchestra Research · Open Source · MIT
+          Built on AI-Research-SKILLs · Open Source · MIT
         </motion.div>
 
         {/* Headline */}
@@ -99,13 +99,14 @@ export default function Hero() {
           style={{
             fontSize: "17px",
             color: "#4A6558",
-            maxWidth: "480px",
+            maxWidth: "540px",
             lineHeight: 1.65,
             marginBottom: "36px",
           }}
         >
-          {TOTAL_SKILLS} production-ready skills across {TOTAL_CATEGORIES}{" "}
-          categories — from model architecture to paper writing, for any AI agent.
+          {TOTAL_SKILLS} open skills across {TOTAL_CATEGORIES}{" "}
+          categories — from model architecture to paper writing — that install
+          into Claude Code, Codex, Gemini CLI, or Cursor with one command.
         </motion.p>
 
         {/* CTAs */}
@@ -118,7 +119,7 @@ export default function Hero() {
           }}
         >
           <a
-            href="#catalog"
+            href="/docs"
             style={{
               display: "inline-flex",
               alignItems: "center",
@@ -135,7 +136,7 @@ export default function Hero() {
             }}
             className="btn-pink-hover"
           >
-            Browse skills
+            Get started
             <svg width="14" height="14" fill="none" viewBox="0 0 16 16">
               <path
                 d="M3 8h10M9 4l4 4-4 4"
@@ -147,9 +148,7 @@ export default function Hero() {
             </svg>
           </a>
           <a
-            href="https://github.com/Demerzels-lab/Aires-Research-Agent"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="#catalog"
             style={{
               display: "inline-flex",
               alignItems: "center",
@@ -166,7 +165,7 @@ export default function Hero() {
             }}
             className="btn-outline-hover"
           >
-            GitHub
+            Browse {TOTAL_SKILLS} skills
             <svg width="14" height="14" fill="none" viewBox="0 0 16 16">
               <path
                 d="M3 8h10M9 4l4 4-4 4"

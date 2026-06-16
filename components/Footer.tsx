@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Footer() {
   return (
@@ -31,23 +32,19 @@ export default function Footer() {
           style={{
             width: "20px",
             height: "20px",
-            background: "#FF3D8A",
-            borderRadius: "5px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
+            borderRadius: "50%",
+            overflow: "hidden",
+            position: "relative",
             flexShrink: 0,
           }}
         >
-          <svg width="10" height="10" fill="none" viewBox="0 0 16 16">
-            <path
-              d="M3 8L7 12L13 4"
-              stroke="white"
-              strokeWidth="2.2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
+          <Image
+            src="/Logo.webp"
+            alt="Aires mascot"
+            fill
+            sizes="20px"
+            style={{ objectFit: "cover" }}
+          />
         </span>
         Aires
         <span
@@ -67,7 +64,6 @@ export default function Footer() {
           { href: "/#catalog", label: "catalog" },
           { href: "/#how-it-works", label: "how-it-works" },
           { href: "https://github.com/Demerzels-lab/Aires-Research-Agent", label: "github", external: true },
-          { href: "https://claudefinance.fun", label: "wealth.id", external: true, pink: true },
         ].map((link) => (
           link.external ? (
             <a
@@ -78,7 +74,7 @@ export default function Footer() {
               style={{
                 fontFamily: "var(--font-mono, 'DM Mono'), monospace",
                 fontSize: "11px",
-                color: link.pink ? "#FF3D8A" : "#4A6558",
+                color: "#4A6558",
                 textDecoration: "none",
                 transition: "color 0.15s",
               }}
@@ -111,7 +107,7 @@ export default function Footer() {
           color: "#7A9B8A",
         }}
       >
-        unofficial showcase · MIT license
+        Built on the open AI-Research-SKILLs library · MIT license
       </span>
     </footer>
   );

@@ -26,3 +26,8 @@ body {
 @media (prefers-reduced-motion: reduce) {
   * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }
+
+@media (max-width: 860px) {
+  .skill-detail-grid { grid-template-columns: 1fr !important; }
+  .skill-detail-sidebar { position: static !important; }
+}
