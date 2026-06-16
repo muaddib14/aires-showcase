@@ -18,11 +18,11 @@ const TOC = [
 const FAQS = [
   {
     q: "What's the difference between Path A and Path B?",
-    a: "Path A (CLI) is for developers — installs skills to your project directory and auto-loads them. Path B (Upload) is for Claude chat users — manually upload SKILL.md to claude.ai/customize/skills and call via slash commands. Both are fully supported.",
+    a: "Path A (CLI) is for developers - installs skills to your project directory and auto-loads them. Path B (Upload) is for Claude chat users - manually upload SKILL.md to claude.ai/customize/skills and call via slash commands. Both are fully supported.",
   },
   {
     q: "Do I need an API key?",
-    a: "No. Skills are plain SKILL.md instruction files — your agent reads them directly. There is nothing to authenticate.",
+    a: "No. Skills are plain SKILL.md instruction files - your agent reads them directly. There is nothing to authenticate.",
   },
   {
     q: "Which agents are supported?",
@@ -30,7 +30,7 @@ const FAQS = [
   },
   {
     q: "Can I use this commercially?",
-    a: "Yes. Everything is MIT licensed — use it at work, fork it, modify it, redistribute it. No restrictions.",
+    a: "Yes. Everything is MIT licensed - use it at work, fork it, modify it, redistribute it. No restrictions.",
   },
   {
     q: "How do I update skills?",
@@ -38,7 +38,7 @@ const FAQS = [
   },
   {
     q: "Can I write my own skills?",
-    a: "Yes. Copy the structure of any existing skill — a SKILL.md with YAML frontmatter (name + description) plus optional reference docs. Upload it via Path B or add to your project for Path A.",
+    a: "Yes. Copy the structure of any existing skill - a SKILL.md with YAML frontmatter (name + description) plus optional reference docs. Upload it via Path B or add to your project for Path A.",
   },
 ];
 
@@ -283,7 +283,7 @@ export default function DocsContent() {
               </h2>
               <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "10px" }}>
                 {[
-                  <>Choose Path A (CLI) or Path B (Upload) — both work</>,
+                  <>Choose Path A (CLI) or Path B (Upload) - both work</>,
                   <>Path A: Node.js 18+ + your AI coding agent</>,
                   <>Path B: Claude for Work account + browser</>,
                   <>5 minutes either way. No API key, no config files</>,
@@ -373,7 +373,7 @@ export default function DocsContent() {
                       marginBottom: "12px",
                     }}
                   >
-                    {TOTAL_CATEGORIES} categories · {TOTAL_SKILLS} skills
+                    {TOTAL_CATEGORIES} categories | {TOTAL_SKILLS} skills
                   </div>
                   <div
                     style={{
@@ -436,7 +436,7 @@ export default function DocsContent() {
                 </div>
                 <div style={{ minWidth: 0, flex: 1 }}>
                   <h4 style={{ fontFamily: DISPLAY, fontSize: "16px", fontWeight: 700, color: "#0D1F18", marginBottom: "6px" }}>
-                    CLI — for developers
+                    CLI - for developers
                   </h4>
                   <p style={{ fontSize: "14px", color: "#4A6558", lineHeight: 1.65, marginBottom: "12px" }}>
                     Install skills to your project directory via command line:
@@ -476,7 +476,7 @@ export default function DocsContent() {
                 </div>
                 <div style={{ minWidth: 0, flex: 1 }}>
                   <h4 style={{ fontFamily: DISPLAY, fontSize: "16px", fontWeight: 700, color: "#0D1F18", marginBottom: "6px" }}>
-                    Upload — for Claude chat
+                    Upload - for Claude chat
                   </h4>
                   <p style={{ fontSize: "14px", color: "#4A6558", lineHeight: 1.65, marginBottom: "14px" }}>
                     Download any skill&apos;s SKILL.md file and upload to Claude&apos;s skill manager:
@@ -522,7 +522,7 @@ export default function DocsContent() {
                 {
                   n: "01",
                   title: "Start with Autoresearch",
-                  desc: "The orchestrator skill. It routes to every other skill in the library and manages the full research loop — hypothesis to paper.",
+                  desc: "The orchestrator skill. It routes to every other skill in the library and manages the full research loop - hypothesis to paper.",
                   pink: true,
                 },
                 {
@@ -591,7 +591,6 @@ export default function DocsContent() {
                 Everything else you need to know.
               </p>
             </div>
-            </h2>
             <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
               {FAQS.map((faq) => (
                 <details

@@ -68,9 +68,9 @@ const STEPS = [
     icon: ICONS.terminal,
     iconBg: "#0D1F18",
     iconColor: "#7EE8BE",
-    title: "Install to your agent",
+    title: "Install — pick your path",
     description:
-      "Works with Claude Code, Codex, Gemini CLI, and Cursor out of the box.",
+      "Path A: CLI for developers (Claude Code, Cursor, Gemini CLI). Path B: Upload SKILL.md to Claude chat. Both fully supported.",
     code: "npx ai-research-skills install",
   },
 ] as const;
