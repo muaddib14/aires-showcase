@@ -17,12 +17,16 @@ const TOC = [
 
 const FAQS = [
   {
+    q: "What's the difference between Path A and Path B?",
+    a: "Path A (CLI) is for developers — installs skills to your project directory and auto-loads them. Path B (Upload) is for Claude chat users — manually upload SKILL.md to claude.ai/customize/skills and call via slash commands. Both are fully supported.",
+  },
+  {
     q: "Do I need an API key?",
     a: "No. Skills are plain SKILL.md instruction files — your agent reads them directly. There is nothing to authenticate.",
   },
   {
     q: "Which agents are supported?",
-    a: "Claude Code, Codex, Gemini CLI, and Cursor work out of the box. Any agent that supports the Anthropic skill format can load them.",
+    a: "Claude Code, Codex, Gemini CLI, and Cursor work out of the box (Path A). Claude chat (Path B) works anywhere. Any agent that supports the Anthropic skill format can load them.",
   },
   {
     q: "Can I use this commercially?",
@@ -30,11 +34,11 @@ const FAQS = [
   },
   {
     q: "How do I update skills?",
-    a: "Re-run the install command. It pulls the latest SKILL.md from the repository and replaces your local copy.",
+    a: "Path A: Re-run the install command. Path B: Download the latest SKILL.md from GitHub and re-upload to your skill manager.",
   },
   {
     q: "Can I write my own skills?",
-    a: "Yes. Copy the structure of any existing skill — a SKILL.md with YAML frontmatter (name + description) plus optional reference docs — and drop it into your agent's skills directory.",
+    a: "Yes. Copy the structure of any existing skill — a SKILL.md with YAML frontmatter (name + description) plus optional reference docs. Upload it via Path B or add to your project for Path A.",
   },
 ];
 
@@ -273,9 +277,10 @@ export default function DocsContent() {
               </h2>
               <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "10px" }}>
                 {[
-                  <>An AI coding agent — <strong>Claude Code</strong>, Codex, Gemini CLI, or Cursor</>,
-                  <>Node.js 18+ (for the <code style={{ fontFamily: MONO, fontSize: "12.5px", background: "rgba(0,122,82,0.1)", padding: "1px 6px", borderRadius: "4px" }}>npx</code> installer)</>,
-                  <>5 minutes — that&apos;s it. No account, no API key, no config files</>,
+                  <>Choose Path A (CLI) or Path B (Upload) — both work</>,
+                  <>Path A: Node.js 18+ + your AI coding agent</>,
+                  <>Path B: Claude for Work account + browser</>,
+                  <>5 minutes either way. No API key, no config files</>,
                 ].map((item, i) => (
                   <li key={i} style={{ display: "flex", gap: "10px", fontSize: "14px", color: "#2A4035", lineHeight: 1.6 }}>
                     <svg width="16" height="16" fill="none" viewBox="0 0 24 24" style={{ flexShrink: 0, marginTop: "3px", color: "#007A52" }}>
@@ -391,75 +396,94 @@ export default function DocsContent() {
               </div>
             </div>
 
-            {/* Step 2 */}
-            <div style={{ display: "flex", gap: "18px", marginBottom: "8px" }}>
-              <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-                <div
-                  style={{
-                    width: "30px",
-                    height: "30px",
-                    borderRadius: "50%",
-                    background: "#00B87A",
-                    color: "white",
-                    fontFamily: MONO,
-                    fontSize: "13px",
-                    fontWeight: 500,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    flexShrink: 0,
-                  }}
-                >
-                  2
-                </div>
-                <div style={{ width: "2px", flex: 1, background: "#C8DDD4", marginTop: "6px" }} />
-              </div>
-              <div style={{ paddingBottom: "32px", minWidth: 0, flex: 1 }}>
-                <h3 style={{ fontFamily: DISPLAY, fontSize: "17px", fontWeight: 700, color: "#0D1F18", marginBottom: "6px" }}>
-                  Run the install command
-                </h3>
-                <p style={{ fontSize: "14px", color: "#4A6558", lineHeight: 1.65 }}>
-                  From your project directory, install any skill by its slug:
-                </p>
-                <CodeBlock cmd="npx ai-research-skills install autoresearch" />
-                <p style={{ fontSize: "14px", color: "#4A6558", lineHeight: 1.65 }}>
-                  Or install everything at once:
-                </p>
-                <CodeBlock cmd="npx ai-research-skills install --all" />
-              </div>
-            </div>
+            {/* Two ways */}
+            <div style={{ marginTop: "32px", marginBottom: "32px" }}>
+              <p style={{ fontSize: "14px", color: "#4A6558", lineHeight: 1.65, marginBottom: "18px" }}>
+                Choose your installation path:
+              </p>
 
-            {/* Step 3 */}
-            <div style={{ display: "flex", gap: "18px" }}>
-              <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-                <div
-                  style={{
-                    width: "30px",
-                    height: "30px",
-                    borderRadius: "50%",
-                    background: "#00B87A",
-                    color: "white",
-                    fontFamily: MONO,
-                    fontSize: "13px",
-                    fontWeight: 500,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    flexShrink: 0,
-                  }}
-                >
-                  3
+              {/* Path A: CLI */}
+              <div style={{ display: "flex", gap: "18px", marginBottom: "32px" }}>
+                <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+                  <div
+                    style={{
+                      width: "30px",
+                      height: "30px",
+                      borderRadius: "50%",
+                      background: "#FF3D8A",
+                      color: "white",
+                      fontFamily: MONO,
+                      fontSize: "13px",
+                      fontWeight: 500,
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      flexShrink: 0,
+                    }}
+                  >
+                    A
+                  </div>
+                </div>
+                <div style={{ minWidth: 0, flex: 1 }}>
+                  <h4 style={{ fontFamily: DISPLAY, fontSize: "16px", fontWeight: 700, color: "#0D1F18", marginBottom: "6px" }}>
+                    CLI — for developers
+                  </h4>
+                  <p style={{ fontSize: "14px", color: "#4A6558", lineHeight: 1.65, marginBottom: "12px" }}>
+                    Install skills to your project directory via command line:
+                  </p>
+                  <CodeBlock cmd="npx ai-research-skills install autoresearch" />
+                  <p style={{ fontSize: "14px", color: "#4A6558", lineHeight: 1.65, marginBottom: "8px" }}>
+                    Or all at once:
+                  </p>
+                  <CodeBlock cmd="npx ai-research-skills install --all" />
+                  <p style={{ fontSize: "13px", color: "#7A9B8A", lineHeight: 1.6, marginTop: "12px" }}>
+                    Skills auto-load when your agent needs them. No imports, no manual activation.
+                  </p>
                 </div>
               </div>
-              <div style={{ minWidth: 0, flex: 1 }}>
-                <h3 style={{ fontFamily: DISPLAY, fontSize: "17px", fontWeight: 700, color: "#0D1F18", marginBottom: "6px" }}>
-                  Start working — skills auto-load
-                </h3>
-                <p style={{ fontSize: "14px", color: "#4A6558", lineHeight: 1.65 }}>
-                  That&apos;s it. Your agent detects the right skill from context — ask it
-                  to fine-tune a model and the fine-tuning skill loads itself. No
-                  imports, no manual activation.
-                </p>
+
+              {/* Path B: Upload */}
+              <div style={{ display: "flex", gap: "18px" }}>
+                <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+                  <div
+                    style={{
+                      width: "30px",
+                      height: "30px",
+                      borderRadius: "50%",
+                      background: "#007A52",
+                      color: "white",
+                      fontFamily: MONO,
+                      fontSize: "13px",
+                      fontWeight: 500,
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      flexShrink: 0,
+                    }}
+                  >
+                    B
+                  </div>
+                </div>
+                <div style={{ minWidth: 0, flex: 1 }}>
+                  <h4 style={{ fontFamily: DISPLAY, fontSize: "16px", fontWeight: 700, color: "#0D1F18", marginBottom: "6px" }}>
+                    Upload — for Claude chat
+                  </h4>
+                  <p style={{ fontSize: "14px", color: "#4A6558", lineHeight: 1.65, marginBottom: "14px" }}>
+                    Download any skill&apos;s SKILL.md file and upload to Claude&apos;s skill manager:
+                  </p>
+                  <div style={{ background: "#E0F7EE", border: "1.5px solid rgba(0,184,122,0.2)", borderRadius: "12px", padding: "14px 16px", marginBottom: "14px" }}>
+                    <ol style={{ fontSize: "13.5px", color: "#2A4035", lineHeight: 1.7, margin: 0, paddingLeft: "18px" }}>
+                      <li>Go to <a href="https://github.com/Demerzels-lab/Aires-Research-Agent/tree/main" target="_blank" rel="noopener noreferrer" style={{ color: "#007A52", fontWeight: 600, textDecoration: "none" }}>Aires GitHub</a> → choose a skill folder</li>
+                      <li>Download the <code style={{ fontFamily: MONO, fontSize: "12px", background: "rgba(0,122,82,0.1)", padding: "1px 6px", borderRadius: "4px" }}>SKILL.md</code> file</li>
+                      <li>Open <a href="https://claude.ai/customize/skills" target="_blank" rel="noopener noreferrer" style={{ color: "#007A52", fontWeight: 600, textDecoration: "none" }}>claude.ai/customize/skills</a></li>
+                      <li>Click <strong>Add skill</strong> → upload your SKILL.md</li>
+                      <li>Use the skill in chat via <code style={{ fontFamily: MONO, fontSize: "12px", background: "rgba(0,122,82,0.1)", padding: "1px 6px", borderRadius: "4px" }}>/skill-name</code></li>
+                    </ol>
+                  </div>
+                  <p style={{ fontSize: "13px", color: "#7A9B8A", lineHeight: 1.6 }}>
+                    Works in any Claude conversation. No setup required.
+                  </p>
+                </div>
               </div>
             </div>
           </section>
