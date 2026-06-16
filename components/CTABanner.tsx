@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function CTABanner() {
   return (
     <section style={{ padding: "0 48px 64px", maxWidth: "1120px", margin: "0 auto" }}>
@@ -30,6 +32,24 @@ export default function CTABanner() {
 
         {/* Left content */}
         <div style={{ position: "relative", zIndex: 1 }}>
+          <div
+            style={{
+              width: "64px",
+              height: "64px",
+              borderRadius: "50%",
+              overflow: "hidden",
+              position: "relative",
+              border: "2px solid rgba(255,61,138,0.5)",
+              marginBottom: "16px",
+            }}
+          >
+            <Image
+              src="/Logo.webp"
+              alt="Aires mascot"
+              fill
+              style={{ objectFit: "cover" }}
+            />
+          </div>
           <div
             style={{
               fontFamily: "var(--font-mono, 'DM Mono'), monospace",
