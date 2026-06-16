@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { SKILLS } from "@/lib/skills";
 import { CATEGORIES } from "@/lib/categories";
 import CategoryRail from "./CategoryRail";
@@ -326,38 +327,103 @@ export default function SkillGrid() {
       )}
 
       {filtered.length === 0 && (
-        <div style={{ textAlign: "center", padding: "64px 0" }}>
+        <div
+          style={{
+            textAlign: "center",
+            padding: "48px 24px",
+            background: "#FFFFFF",
+            border: "1px dashed #CFE0D4",
+            borderRadius: "12px",
+          }}
+        >
           <div
             style={{
-              fontFamily: "var(--font-mono, 'DM Mono'), monospace",
-              fontSize: "36px",
-              color: "#C8DDD4",
+              width: "120px",
+              height: "120px",
+              borderRadius: "50%",
+              overflow: "hidden",
+              margin: "0 auto",
+              position: "relative",
             }}
           >
-            [ ]
+            <Image
+              src="/Logo.webp"
+              alt="Aires mascot"
+              fill
+              loading="lazy"
+              style={{ objectFit: "cover" }}
+            />
           </div>
-          <p style={{ marginTop: "16px", color: "#4A6558" }}>
-            No skills match &ldquo;{query}&rdquo;
-          </p>
-          <button
-            onClick={() => {
-              setQuery("");
-              setActiveCodes(null);
-              setActiveCategory(null);
-            }}
+          <h3
             style={{
-              marginTop: "16px",
-              fontFamily: "var(--font-mono, 'DM Mono'), monospace",
-              fontSize: "13px",
-              color: "#FF3D8A",
-              background: "none",
-              border: "none",
-              cursor: "pointer",
-              textDecoration: "underline",
+              fontFamily: "var(--font-display, 'Bricolage Grotesque'), sans-serif",
+              fontSize: "20px",
+              fontWeight: 700,
+              color: "#102018",
+              marginTop: "20px",
+              marginBottom: "8px",
             }}
           >
-            Clear filters
-          </button>
+            Hmm, no skills match that
+          </h3>
+          <p
+            style={{
+              fontSize: "14px",
+              color: "#5B6E63",
+              maxWidth: "360px",
+              margin: "0 auto",
+              lineHeight: 1.6,
+            }}
+          >
+            {query.trim()
+              ? <>Nothing in the library lines up with &ldquo;{query}&rdquo; yet. Try a different keyword, or browse a category.</>
+              : "No skills here yet — try another category."}
+          </p>
+          <div
+            style={{
+              display: "flex",
+              gap: "10px",
+              justifyContent: "center",
+              marginTop: "20px",
+            }}
+          >
+            <button
+              onClick={() => setQuery("")}
+              style={{
+                fontFamily: "var(--font-sans, 'Plus Jakarta Sans'), sans-serif",
+                fontSize: "13px",
+                fontWeight: 600,
+                color: "#FFFFFF",
+                background: "#DB2777",
+                border: "none",
+                borderRadius: "9px",
+                padding: "9px 18px",
+                cursor: "pointer",
+              }}
+            >
+              Clear search
+            </button>
+            <button
+              onClick={() => {
+                setQuery("");
+                setActiveCodes(null);
+                setActiveCategory(null);
+              }}
+              style={{
+                fontFamily: "var(--font-sans, 'Plus Jakarta Sans'), sans-serif",
+                fontSize: "13px",
+                fontWeight: 600,
+                color: "#4A6558",
+                background: "#FFFFFF",
+                border: "1.5px solid #C8DDD4",
+                borderRadius: "9px",
+                padding: "9px 18px",
+                cursor: "pointer",
+              }}
+            >
+              Browse all {SKILLS.length}
+            </button>
+          </div>
         </div>
       )}
     </section>
