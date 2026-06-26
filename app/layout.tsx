@@ -45,10 +45,15 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Aires — AI Research SKILLs",
     description: "98 skills. 23 categories. Full AI research lifecycle.",
-    images: [{ url: "/og-image.png", width: 1200, height: 630 }],
+    images: [{ url: "/Logo.webp", width: 1200, height: 630 }],
   },
   icons: {
-    icon: "/Logo.webp",
+    icon: [
+      {
+        url: "/Logo.webp",
+        type: "image/webp",
+      },
+    ],
   },
 };
 
