@@ -5,7 +5,6 @@ import { useState } from "react";
 import { SKILLS, type Skill } from "@/lib/skills";
 import { CATEGORIES } from "@/lib/categories";
 import { githubPathUrl } from "@/lib/utils";
-import DemoVideo from "./DemoVideo";
 
 interface Props {
   skill: Skill;
@@ -175,8 +174,6 @@ export default function SkillDetail({ skill }: Props) {
             {skill.description}
           </p>
 
-          {/* Demo video */}
-          <DemoVideo videoId="FeZ8DwScwbk" title="Live demo — recorded in Claude" />
         </div>
 
         {/* Works-with section */}
